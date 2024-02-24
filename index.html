@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Public Camera Feeds</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  .camera-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .camera-row {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .camera {
+    width: 40%; /* Adjusted width for smaller camera windows */
+    margin: 2.5%;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    position: relative;
+  }
+  .camera video {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+</style>
+</head>
+<body>
+
+<div class="camera-container">
+  <div class="camera-row">
+    <div class="camera">
+      <h2>Camera 1</h2>
+      <video id="camera1" autoplay controls></video>
+    </div>
+
+    <div class="camera">
+      <h2>Camera 2</h2>
+      <video id="camera2" autoplay controls></video>
+    </div>
+  </div>
+
+  <div class="camera-row">
+    <div class="camera">
+      <h2>Camera 3</h2>
+      <video id="camera3" autoplay controls></video>
+    </div>
+
+    <div class="camera">
+      <h2>Camera 4</h2>
+      <video id="camera4" autoplay controls></video>
+    </div>
+  </div>
+</div>
+
+<script>
+  // URLs of publicly available video files
+  const videoURLs = [
+    "test.mp4",
+    "URL_OF_VIDEO_2",
+    "URL_OF_VIDEO_3",
+    "URL_OF_VIDEO_4"
+  ];
+
+  // Function to start video streams
+  function startVideoStreams() {
+    videoURLs.forEach((url, index) => {
+      const videoElement = document.getElementById(`camera${index + 1}`);
+      if (videoElement) {
+        videoElement.src = url;
+      }
+    });
+  }
+
+  // Start video streams when the page loads
+  window.onload = startVideoStreams;
+</script>
+
+</body>
+</html>
