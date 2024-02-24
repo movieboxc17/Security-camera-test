@@ -3,17 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Public Camera Feeds.</title>
+<title>Public Camera Feeds</title>
 <style>
   body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #333; /* Darker background */
+  }
+  .header {
+    background-color: #222; /* Darker header */
+    color: #fff;
+    padding: 10px;
+    text-align: center;
   }
   .camera-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    padding: 20px;
   }
   .camera-row {
     display: flex;
@@ -22,11 +30,32 @@
     margin-bottom: 20px;
   }
   .camera {
-    width: 40%; /* Adjusted width for smaller camera windows */
+    width: 45%;
     margin: 2.5%;
-    border: 1px solid #ccc;
+    border: 2px solid #555; /* Adjusted border color */
+    border-radius: 10px;
     overflow: hidden;
     position: relative;
+    background-color: #444; /* Darker background for camera */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  .camera h2 {
+    margin: 10px 0;
+    padding: 0 10px;
+    color: #fff;
+    text-align: center;
+  }
+  .camera-status {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: red;
+  }
+  .camera-status.online {
+    background-color: green;
   }
   .camera img,
   .camera video {
@@ -38,14 +67,20 @@
 </head>
 <body>
 
+<div class="header">
+  <h1>Public Camera Feeds</h1>
+</div>
+
 <div class="camera-container">
   <div class="camera-row">
     <div class="camera">
+      <div class="camera-status online"></div>
       <h2>Camera 1</h2>
-      <video id="camera1" autoplay controls></video>
+      <video id="camera1" autoplay controls loop style="width: 100%; height: 250px;"></video>
     </div>
 
     <div class="camera">
+      <div class="camera-status"></div>
       <h2>Camera 2</h2>
       <img id="camera2" src="placeholder.jpeg" alt="Camera 2">
     </div>
@@ -53,11 +88,13 @@
 
   <div class="camera-row">
     <div class="camera">
+      <div class="camera-status online"></div>
       <h2>Camera 3</h2>
-      <video id="camera3" autoplay controls></video>
+      <video id="camera3" autoplay controls loop style="width: 100%; height: 250px;"></video>
     </div>
 
     <div class="camera">
+      <div class="camera-status"></div>
       <h2>Camera 4</h2>
       <img id="camera4" src="placeholder.jpeg" alt="Camera 4">
     </div>
@@ -67,10 +104,10 @@
 <script>
   // URLs of publicly available media files
   const mediaURLs = [
-    "camera 1.mp4", // Use video for Camera 1
-    "no signal.jpeg", // Use image for Camera 2
-    "camera 2.mp4", // Use video for Camera 3
-    "no signal.jpeg"  // Use image for Camera 4
+    "camera1.mp4", // Use video for Camera 1
+    "no_signal.jpeg", // Use image for Camera 2
+    "camera2.mp4", // Use video for Camera 3
+    "no_signal.jpeg"  // Use image for Camera 4
   ];
 
   // Function to display media
