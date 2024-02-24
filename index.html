@@ -28,6 +28,7 @@
     overflow: hidden;
     position: relative;
   }
+  .camera img,
   .camera video {
     width: 100%;
     height: auto;
@@ -46,7 +47,7 @@
 
     <div class="camera">
       <h2>Camera 2</h2>
-      <video id="camera2" autoplay controls></video>
+      <img id="camera2" src="placeholder.jpg" alt="Camera 2">
     </div>
   </div>
 
@@ -58,32 +59,42 @@
 
     <div class="camera">
       <h2>Camera 4</h2>
-      <video id="camera4" autoplay controls></video>
+      <img id="camera4" src="placeholder.jpg" alt="Camera 4">
     </div>
   </div>
 </div>
 
 <script>
-  // URLs of publicly available video files
-  const videoURLs = [
-    "IMG_3243.mov",
-    "",
-    "URL_OF_VIDEO_3",
-    "URL_OF_VIDEO_4"
+  // URLs of publicly available media files
+  const mediaURLs = [
+    "camera 1.mp4", // Use video for Camera 1
+    "no signal.jpg", // Use image for Camera 2
+    "camera 2.mp4", // Use video for Camera 3
+    "no signal.jpg"  // Use image for Camera 4
   ];
 
-  // Function to start video streams
-  function startVideoStreams() {
-    videoURLs.forEach((url, index) => {
-      const videoElement = document.getElementById(`camera${index + 1}`);
-      if (videoElement) {
-        videoElement.src = url;
+  // Function to display media
+  function displayMedia() {
+    mediaURLs.forEach((url, index) => {
+      const mediaElement = document.getElementById(`camera${index + 1}`);
+      if (mediaElement) {
+        if (index % 2 === 0) {
+          // If it's a video file
+          const videoSource = document.createElement("source");
+          videoSource.src = url;
+          videoSource.type = "video/mp4";
+          mediaElement.appendChild(videoSource);
+          mediaElement.setAttribute("controls", ""); // Add controls for video
+        } else {
+          // If it's an image file
+          mediaElement.src = url;
+        }
       }
     });
   }
 
-  // Start video streams when the page loads
-  window.onload = startVideoStreams;
+  // Display media when the page loads
+  window.onload = displayMedia;
 </script>
 
 </body>
